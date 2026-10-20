@@ -1,0 +1,7 @@
+# Local editor / preview settings
+.claude/
+
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store

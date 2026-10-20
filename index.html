@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Coffeella Café | قائمة كوفيلا</title>
+  <meta name="description" content="قائمة كوفيلا كافيه — مشروبات ساخنة وباردة، فرابيه، سموذي، ميلك شيك، حلويات ومخبوزات. بغداد، حي الجامعة.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Coffeella Café — The Real Experience">
+  <meta property="og:description" content="قائمة كوفيلا كافيه بالأسعار — بغداد، حي الجامعة.">
+  <meta property="og:image" content="assets/hero.jpg">
+  <link rel="preload" as="image" href="assets/hero.jpg">
+  <link rel="icon" type="image/png" href="brand.png">
+  <link rel="apple-touch-icon" href="brand.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- SVG icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-hot" viewBox="0 0 64 64">
+        <path d="M24 6c-3 4 3 6 0 10M32 4c-3 4 3 6 0 10M40 6c-3 4 3 6 0 10" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M12 24h36v14a16 16 0 0 1-16 16h-4a16 16 0 0 1-16-16V24z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M48 28h3a7 7 0 0 1 0 14h-4" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M8 60h44" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-cold" viewBox="0 0 64 64">
+        <path d="M36 4l-4 14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M14 18h36l-2 6H16z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M17 24l4 34h22l4-34" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+        <rect x="24" y="32" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2" transform="rotate(-12 27.5 35.5)"/>
+        <rect x="33" y="38" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.2" transform="rotate(10 36.5 41.5)"/>
+      </symbol>
+      <symbol id="i-desserts" viewBox="0 0 64 64">
+        <path d="M6 42c4-14 14-24 26-24s22 10 26 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M6 42c8 6 44 6 52 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+        <path d="M20 24c2 6 2 14 0 20M32 18v26M44 24c-2 6-2 14 0 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M14 54h36" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-x" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24">
+        <path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24">
+        <path d="M5 3h3l2 5-2.5 1.5a11 11 0 0 0 7 7L16 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="i-whatsapp" viewBox="0 0 24 24">
+        <path d="M12 2.5a9.5 9.5 0 0 0-8.2 14.3L2.5 21.5l4.8-1.3A9.5 9.5 0 1 0 12 2.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M8.6 7.6c.3-.6.6-.6.9-.6h.6c.2 0 .5 0 .7.5l.9 2.1c.1.2.1.5-.1.7l-.6.7c-.2.2-.2.4 0 .7a7 7 0 0 0 3.2 2.8c.3.1.5.1.7-.1l.8-.9c.2-.3.5-.3.8-.2l2 .9c.3.2.5.3.5.5 0 .6-.2 1.4-.9 1.9-.7.5-1.8.8-3.2.3a11 11 0 0 1-5.6-4.9c-.8-1.4-.8-2.6-.5-3.4z" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-instagram" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/>
+      </symbol>
+      <symbol id="i-up" viewBox="0 0 24 24">
+        <path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip-link" href="#menu">تخطَّ إلى القائمة</a>
+
+  <!-- Announcement bar (same content as the original site) -->
+  <div class="topbar">
+    <div class="container topbar__inner">
+      <p class="topbar__info">
+        <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+        <span>بغداد – حي الجامعة – فرع شركة كري الأرض الصلبة</span>
+      </p>
+      <div class="topbar__actions">
+        <a class="topbar__phone" href="tel:+9647870010580" dir="ltr">0787 001 0580</a>
+        <a class="btn btn--ghost btn--sm" href="https://wa.me/9647870010580" target="_blank" rel="noopener">للاستفسار</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="brand" href="#top" aria-label="Coffeella — الصفحة الرئيسية">
+        <img class="brand__logo" src="brand.png" width="106" height="104" alt="شعار كوفيلا">
+        <span class="brand__name" lang="en">coffeella menu</span>
+      </a>
+      <div class="header__end">
+        <nav class="nav" aria-label="أقسام القائمة">
+          <a href="#top" class="nav__link">الصفحة الرئيسية</a>
+          <a href="#hot" class="nav__link">مشروبات ساخنة</a>
+          <a href="#cold" class="nav__link">مشروبات باردة</a>
+          <a href="#desserts" class="nav__link">حلويات</a>
+        </nav>
+        <a class="header__social" href="https://www.instagram.com/coffeella.cafe" target="_blank" rel="noopener" aria-label="كوفيلا على إنستغرام">
+          <svg class="ico" aria-hidden="true"><use href="#i-instagram"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <div class="hero__badge">
+          <svg class="steam" viewBox="0 0 80 40" aria-hidden="true">
+            <path d="M22 38c-6-8 6-12 0-20s6-12 0-18"/>
+            <path d="M40 38c-6-8 6-12 0-20s6-12 0-18"/>
+            <path d="M58 38c-6-8 6-12 0-20s6-12 0-18"/>
+          </svg>
+          <img src="brand.png" width="106" height="104" alt="Coffeella Café — The Real Experience">
+        </div>
+        <p class="hero__eyebrow" lang="en">The Real Experience</p>
+        <h1 class="hero__title">قائمة <span>كوفيلا</span></h1>
+        <p class="hero__lead">قهوة، مشروبات باردة، وحلويات ومخبوزات — اختر قسمك وابدأ التجربة.</p>
+        <div class="hero__actions">
+          <a class="btn btn--accent" href="#menu">تصفّح القائمة</a>
+          <a class="btn btn--ghost" href="https://wa.me/9647870010580" target="_blank" rel="noopener">
+            <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+            للاستفسار
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category cards (keeps the original tile + label-box style) -->
+    <section class="cats container" aria-label="الأقسام">
+      <div class="cats__grid" id="cats"></div>
+    </section>
+
+    <!-- Menu -->
+    <section class="menu" id="menu" aria-label="القائمة">
+      <div class="toolbar">
+        <div class="container toolbar__inner">
+          <label class="search">
+            <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
+            <input id="search" type="search" placeholder="ابحث عن مشروب أو حلوى…" autocomplete="off" aria-label="ابحث في القائمة">
+            <button type="button" class="search__clear" id="searchClear" aria-label="مسح البحث" hidden>
+              <svg class="ico" aria-hidden="true"><use href="#i-x"/></svg>
+            </button>
+          </label>
+          <nav class="tabs" id="tabs" aria-label="التنقل بين الأقسام"></nav>
+        </div>
+      </div>
+
+      <div class="container">
+        <p class="menu__note">جميع الأسعار بالدينار العراقي (د.ع)</p>
+        <div id="sections"></div>
+        <div class="empty" id="empty" hidden>
+          <p>لا توجد نتائج مطابقة لـ «<span id="emptyQuery"></span>»</p>
+          <button type="button" class="btn btn--ghost btn--sm" id="emptyReset">عرض القائمة كاملة</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="brand.png" width="106" height="104" alt="" loading="lazy">
+        <p lang="en">The Real Experience</p>
+      </div>
+      <ul class="footer__links">
+        <li>
+          <svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg>
+          بغداد – حي الجامعة – فرع شركة كري الأرض الصلبة
+        </li>
+        <li>
+          <svg class="ico" aria-hidden="true"><use href="#i-phone"/></svg>
+          <a href="tel:+9647870010580" dir="ltr">0787 001 0580</a>
+        </li>
+        <li>
+          <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+          <a href="https://wa.me/9647870010580" target="_blank" rel="noopener">راسلنا على واتساب</a>
+        </li>
+        <li>
+          <svg class="ico" aria-hidden="true"><use href="#i-instagram"/></svg>
+          <a href="https://www.instagram.com/coffeella.cafe" target="_blank" rel="noopener" dir="ltr">@coffeella.cafe</a>
+        </li>
+      </ul>
+    </div>
+    <p class="footer__copy" lang="en">© <span id="year"></span> Coffeella Café</p>
+  </footer>
+
+  <!-- Floating actions -->
+  <a class="fab fab--wa" href="https://wa.me/9647870010580" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
+    <svg class="ico" aria-hidden="true"><use href="#i-whatsapp"/></svg>
+  </a>
+  <button type="button" class="fab fab--up" id="toTop" aria-label="العودة للأعلى" hidden>
+    <svg class="ico" aria-hidden="true"><use href="#i-up"/></svg>
+  </button>
+
+  <script src="menu-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
