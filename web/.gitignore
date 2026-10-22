@@ -46,3 +46,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Cloudflare preview: generated config with account resource ids, local results
+cloudflare/preview/wrangler.generated.jsonc
+cloudflare/preview/last-measure.json

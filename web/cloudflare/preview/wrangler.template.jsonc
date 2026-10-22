@@ -1,0 +1,58 @@
+// Template for the Cloudflare preview Worker (workers.dev URL only, no custom domain).
+// scripts/e2e/cf-preview.mjs fills __D1_DATABASE_ID__ and writes wrangler.generated.jsonc
+// (git-ignored). Resources: Worker coffeella-v2-preview, R2 bucket coffeella-v2-inc-cache,
+// D1 database coffeella-v2-tag-cache, Durable Object class DOQueueHandler.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "coffeella-v2-preview",
+  "main": "../../.open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "workers_dev": true,
+  "assets": {
+    "directory": "../../.open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "coffeella-v2-preview"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "coffeella-v2-inc-cache"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_name": "coffeella-v2-tag-cache",
+      "database_id": "__D1_DATABASE_ID__"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "DOQueueHandler"
+      ]
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  }
+}

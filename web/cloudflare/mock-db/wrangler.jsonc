@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  // Preview-test only: fake menu data source. Delete after the test
+  // (npx wrangler delete --name coffeella-v2-mock-db).
+  "name": "coffeella-v2-mock-db",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "durable_objects": {
+    "bindings": [{ "name": "MOCK_STATE", "class_name": "MockState" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["MockState"] }]
+}

@@ -1,10 +1,14 @@
+// Local builds/previews (npm run cf:build / cf:preview). Deployments to Cloudflare
+// go through scripts/e2e/cf-preview.mjs, which fills real resource ids.
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  // Preview Worker for V2. Not connected to the live GitHub Pages site or any domain.
   "name": "coffeella-v2-preview",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-10-01",
-  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
@@ -15,11 +19,36 @@
       "service": "coffeella-v2-preview"
     }
   ],
-  // Create with: npx wrangler kv namespace create NEXT_INC_CACHE_KV (and NEXT_TAG_CACHE_KV),
-  // then replace the placeholder ids. Local "wrangler dev" simulates KV without an account.
-  "kv_namespaces": [
-    { "binding": "NEXT_INC_CACHE_KV", "id": "REPLACE_WITH_INC_CACHE_KV_ID" },
-    { "binding": "NEXT_TAG_CACHE_KV", "id": "REPLACE_WITH_TAG_CACHE_KV_ID" }
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "coffeella-v2-inc-cache"
+    }
   ],
-  "observability": { "enabled": true }
+  "d1_databases": [
+    {
+      "binding": "NEXT_TAG_CACHE_D1",
+      "database_name": "coffeella-v2-tag-cache",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ],
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "NEXT_CACHE_DO_QUEUE",
+        "class_name": "DOQueueHandler"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "DOQueueHandler"
+      ]
+    }
+  ],
+  "observability": {
+    "enabled": true
+  }
 }

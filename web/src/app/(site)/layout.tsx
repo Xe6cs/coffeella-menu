@@ -18,6 +18,8 @@ const lato = Lato({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+// Preview deployments (NEXT_PUBLIC_DEPLOY_ENV=preview) must never be indexed.
+const isPreview = process.env.NEXT_PUBLIC_DEPLOY_ENV === "preview";
 
 export const metadata: Metadata = {
   ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
@@ -29,6 +31,7 @@ export const metadata: Metadata = {
     images: ["/assets/hero.jpg"],
   },
   icons: { apple: "/brand.png" },
+  ...(isPreview ? { robots: { index: false, follow: false } } : {}),
 };
 
 export const viewport: Viewport = {

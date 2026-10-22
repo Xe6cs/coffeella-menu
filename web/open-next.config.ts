@@ -1,14 +1,14 @@
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
-import kvIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/kv-incremental-cache";
-import memoryQueue from "@opennextjs/cloudflare/overrides/queue/memory-queue";
-import kvNextTagCache from "@opennextjs/cloudflare/overrides/tag-cache/kv-next-tag-cache";
+import r2IncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/r2-incremental-cache";
+import doQueue from "@opennextjs/cloudflare/overrides/queue/do-queue";
+import d1NextTagCache from "@opennextjs/cloudflare/overrides/tag-cache/d1-next-tag-cache";
 
-// TEMPORARY configuration for local previews only — not the final choice.
-// Cache Components is off (it hung under Workers); the classic ISR model is
-// used. The final cache setup is pending the owner's decision between the
-// tested variants in cloudflare/variants/ (r2-d1-do, kv-d1-do). See README.
+// Owner decision (preliminary): r2-d1-do — OpenNext's documented setup for small
+// sites with on-demand revalidation. Cache Components stays off (it hung under
+// Workers); the classic ISR model + revalidateTag is used. R2 requires an R2
+// subscription on the Cloudflare account (see README, Cloudflare section).
 export default defineCloudflareConfig({
-  incrementalCache: kvIncrementalCache,
-  tagCache: kvNextTagCache,
-  queue: memoryQueue,
+  incrementalCache: r2IncrementalCache,
+  tagCache: d1NextTagCache,
+  queue: doQueue,
 });
