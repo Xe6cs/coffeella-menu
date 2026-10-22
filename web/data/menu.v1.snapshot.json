@@ -1,0 +1,772 @@
+{
+  "source": "menu-data.js",
+  "sourceSha256": "47006f8c43ff01a57c800a7f2165ec7f156f0fabbdd50041fc42334b289b914c",
+  "counts": {
+    "categories": 3,
+    "groups": 9,
+    "products": 82
+  },
+  "categories": [
+    {
+      "slug": "hot",
+      "name_ar": "مشروبات ساخنة",
+      "name_en": "Hot Drinks",
+      "icon": "hot",
+      "photo": "assets/hot.jpg",
+      "photo_focus": "40% 62%",
+      "sort_order": 1,
+      "groups": [
+        {
+          "slug": "hot-coffee-and-hot-drinks",
+          "name_ar": "القهوة والمشروبات الساخنة",
+          "name_en": "Coffee & Hot Drinks",
+          "sort_order": 1,
+          "products": [
+            {
+              "slug": "hot-coffee-and-hot-drinks-espresso",
+              "name_ar": "اسبريسو",
+              "name_en": "Espresso",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-espresso-lungo",
+              "name_ar": "اسبريسو لونجو",
+              "name_en": "Espresso Lungo",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-espresso-affogato",
+              "name_ar": "اسبريسو أفوكاتو",
+              "name_en": "Espresso Affogato",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-espresso-alfredo",
+              "name_ar": "اسبريسو ألفريدو",
+              "name_en": "Espresso Alfredo",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 4
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-americano",
+              "name_ar": "أمريكانو",
+              "name_en": "Americano",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 5
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-cortado",
+              "name_ar": "كورتادو",
+              "name_en": "Cortado",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 6
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-macchiato",
+              "name_ar": "مكياتو",
+              "name_en": "Macchiato",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 7
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-latte",
+              "name_ar": "لاتيه",
+              "name_en": "Latte",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 8
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-spanish-latte",
+              "name_ar": "سبانش لاتيه",
+              "name_en": "Spanish Latte",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 9
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-mocha",
+              "name_ar": "موكا",
+              "name_en": "Mocha",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 10
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-mochachino",
+              "name_ar": "موكاتشينو",
+              "name_en": "Mochachino",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 11
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-flat-white",
+              "name_ar": "فلات وايت",
+              "name_en": "Flat White",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 12
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-nescafe",
+              "name_ar": "نسكافيه",
+              "name_en": "Nescafé",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 13
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-cappuccino",
+              "name_ar": "كابتشينو",
+              "name_en": "Cappuccino",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 14
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-hot-chocolate",
+              "name_ar": "شوكولا ساخنة",
+              "name_en": "Hot Chocolate",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 15
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-matcha",
+              "name_ar": "ماتشا",
+              "name_en": "Matcha",
+              "price_min": 4000,
+              "price_max": 4500,
+              "sort_order": 16
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-matcha-latte",
+              "name_ar": "ماتشا لاتيه",
+              "name_en": "Matcha Latte",
+              "price_min": 4000,
+              "price_max": 5000,
+              "sort_order": 17
+            },
+            {
+              "slug": "hot-coffee-and-hot-drinks-turkish-coffee",
+              "name_ar": "قهوة تركية",
+              "name_en": "Turkish Coffee",
+              "price_min": 2500,
+              "price_max": 5000,
+              "sort_order": 18
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "cold",
+      "name_ar": "مشروبات باردة",
+      "name_en": "Cold Drinks",
+      "icon": "cold",
+      "photo": "assets/cold.jpg",
+      "photo_focus": "35% 52%",
+      "sort_order": 2,
+      "groups": [
+        {
+          "slug": "cold-iced-coffee-and-matcha",
+          "name_ar": "قهوة وماتشا مثلجة",
+          "name_en": "Iced Coffee & Matcha",
+          "sort_order": 1,
+          "products": [
+            {
+              "slug": "cold-iced-coffee-and-matcha-american-orange",
+              "name_ar": "أمريكانو أورنج",
+              "name_en": "American Orange",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "cold-iced-coffee-and-matcha-black-honey-coffee",
+              "name_ar": "بلاك هني كوفي",
+              "name_en": "Black Honey Coffee",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "cold-iced-coffee-and-matcha-cold-brew",
+              "name_ar": "كولد برو",
+              "name_en": "Cold Brew",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "cold-iced-coffee-and-matcha-iced-mocha",
+              "name_ar": "آيس موكا",
+              "name_en": "Iced Mocha",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 4
+            },
+            {
+              "slug": "cold-iced-coffee-and-matcha-iced-macchiato",
+              "name_ar": "آيس مكياتو",
+              "name_en": "Iced Macchiato",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 5
+            },
+            {
+              "slug": "cold-iced-coffee-and-matcha-pastel-coffee-latte",
+              "name_ar": "باستيل كوفي لاتيه",
+              "name_en": "Pastel Coffee Latte",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 6
+            },
+            {
+              "slug": "cold-iced-coffee-and-matcha-iced-spanish-latte",
+              "name_ar": "آيس سبانش لاتيه",
+              "name_en": "Iced Spanish Latte",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 7
+            },
+            {
+              "slug": "cold-iced-coffee-and-matcha-matcha-pink-latte",
+              "name_ar": "ماتشا بينك لاتيه",
+              "name_en": "Matcha Pink Latte",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 8
+            },
+            {
+              "slug": "cold-iced-coffee-and-matcha-matcha-cream-black",
+              "name_ar": "ماتشا بلاك كريم",
+              "name_en": "Matcha Cream Black",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 9
+            }
+          ]
+        },
+        {
+          "slug": "cold-refreshers-and-mojito",
+          "name_ar": "منعشات وموهيتو",
+          "name_en": "Refreshers & Mojito",
+          "sort_order": 2,
+          "products": [
+            {
+              "slug": "cold-refreshers-and-mojito-lemon-green-tea",
+              "name_ar": "ليمون جرين تي",
+              "name_en": "Lemon Green Tea",
+              "price_min": 4500,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "cold-refreshers-and-mojito-thai-tea-strawberry",
+              "name_ar": "تاي تي ستروبيري",
+              "name_en": "Thai Tea Strawberry",
+              "price_min": 4500,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "cold-refreshers-and-mojito-mixed-berry-iced-tea",
+              "name_ar": "مكس بيري آيس تي",
+              "name_en": "Mixed Berry Iced Tea",
+              "price_min": 4500,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "cold-refreshers-and-mojito-iced-apple-lemon",
+              "name_ar": "آيس ليمون آبل",
+              "name_en": "Iced Apple Lemon",
+              "price_min": 4500,
+              "price_max": null,
+              "sort_order": 4
+            },
+            {
+              "slug": "cold-refreshers-and-mojito-mojito-blue-sky",
+              "name_ar": "موهيتو بلو سكاي",
+              "name_en": "Mojito Blue Sky",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 5
+            },
+            {
+              "slug": "cold-refreshers-and-mojito-mojito-blue-hawaii",
+              "name_ar": "موهيتو بلو هاواي",
+              "name_en": "Mojito Blue Hawaii",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 6
+            },
+            {
+              "slug": "cold-refreshers-and-mojito-soft-kiwi-red-berry",
+              "name_ar": "سوفت كيوي ريد بيريز",
+              "name_en": "Soft Kiwi Red Berry",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 7
+            }
+          ]
+        },
+        {
+          "slug": "cold-frappe",
+          "name_ar": "فرابيه",
+          "name_en": "Frappé",
+          "sort_order": 3,
+          "products": [
+            {
+              "slug": "cold-frappe-vanilla-frappe",
+              "name_ar": "فرابيه فانيلا",
+              "name_en": "Vanilla Frappé",
+              "price_min": 6000,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "cold-frappe-caramel-frappe",
+              "name_ar": "فرابيه كراميل",
+              "name_en": "Caramel Frappé",
+              "price_min": 6000,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "cold-frappe-chocolate-frappe",
+              "name_ar": "فرابيه شوكولا",
+              "name_en": "Chocolate Frappé",
+              "price_min": 6000,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "cold-frappe-hazelnut-frappe",
+              "name_ar": "فرابيه بندق",
+              "name_en": "Hazelnut Frappé",
+              "price_min": 6000,
+              "price_max": null,
+              "sort_order": 4
+            }
+          ]
+        },
+        {
+          "slug": "cold-smoothies",
+          "name_ar": "سموذي",
+          "name_en": "Smoothies",
+          "sort_order": 4,
+          "products": [
+            {
+              "slug": "cold-smoothies-green-apple-kiwi",
+              "name_ar": "سموذي تفاح أخضر وكيوي",
+              "name_en": "Green Apple Kiwi",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "cold-smoothies-mixed-berries",
+              "name_ar": "سموذي مكس بيريز",
+              "name_en": "Mixed Berries",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "cold-smoothies-strawberry",
+              "name_ar": "سموذي فراولة",
+              "name_en": "Strawberry",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "cold-smoothies-passion-fruit",
+              "name_ar": "سموذي باشن فروت",
+              "name_en": "Passion Fruit",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 4
+            },
+            {
+              "slug": "cold-smoothies-strawberry-lemonade",
+              "name_ar": "سموذي ليمون وفراولة",
+              "name_en": "Strawberry Lemonade",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 5
+            },
+            {
+              "slug": "cold-smoothies-lemon-mango",
+              "name_ar": "سموذي مانجو وليمون",
+              "name_en": "Lemon Mango",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 6
+            }
+          ]
+        },
+        {
+          "slug": "cold-milkshakes",
+          "name_ar": "ميلك شيك",
+          "name_en": "Milkshakes",
+          "sort_order": 5,
+          "products": [
+            {
+              "slug": "cold-milkshakes-strawberry-banana",
+              "name_ar": "ميلك شيك فراولة وموز",
+              "name_en": "Strawberry Banana",
+              "price_min": 6000,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "cold-milkshakes-chocolate-banana",
+              "name_ar": "ميلك شيك شوكولا وموز",
+              "name_en": "Chocolate Banana",
+              "price_min": 6000,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "cold-milkshakes-nescafe",
+              "name_ar": "ميلك شيك نسكافيه",
+              "name_en": "Nescafé",
+              "price_min": 5500,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "cold-milkshakes-pistachio",
+              "name_ar": "ميلك شيك بستاشيو",
+              "name_en": "Pistachio",
+              "price_min": 6000,
+              "price_max": null,
+              "sort_order": 4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "desserts",
+      "name_ar": "حلويات ومخبوزات",
+      "name_en": "Desserts & Bakery",
+      "icon": "desserts",
+      "photo": "assets/desserts.jpg",
+      "photo_focus": "center 35%",
+      "sort_order": 3,
+      "groups": [
+        {
+          "slug": "desserts-bakery",
+          "name_ar": "مخبوزات",
+          "name_en": "Bakery",
+          "sort_order": 1,
+          "products": [
+            {
+              "slug": "desserts-bakery-cheese-croissant",
+              "name_ar": "كرواسون جبن",
+              "name_en": "Cheese Croissant",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "desserts-bakery-chocolate-croissant",
+              "name_ar": "كرواسون شوكولا",
+              "name_en": "Chocolate Croissant",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "desserts-bakery-plain-croissant",
+              "name_ar": "كرواسون سادة",
+              "name_en": "Plain Croissant",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "desserts-bakery-za-atar-croissant",
+              "name_ar": "كرواسون زعتر",
+              "name_en": "Za'atar Croissant",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 4
+            },
+            {
+              "slug": "desserts-bakery-nutella-croissant",
+              "name_ar": "كرواسون نوتيلا",
+              "name_en": "Nutella Croissant",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 5
+            },
+            {
+              "slug": "desserts-bakery-chocolate-muffin",
+              "name_ar": "مافن شوكولا",
+              "name_en": "Chocolate Muffin",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 6
+            },
+            {
+              "slug": "desserts-bakery-cinnamon-muffin",
+              "name_ar": "مافن قرفة",
+              "name_en": "Cinnamon Muffin",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 7
+            },
+            {
+              "slug": "desserts-bakery-green-apple-muffin",
+              "name_ar": "مافن تفاح أخضر",
+              "name_en": "Green Apple Muffin",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 8
+            },
+            {
+              "slug": "desserts-bakery-blueberry-muffin",
+              "name_ar": "مافن توت أزرق",
+              "name_en": "Blueberry Muffin",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 9
+            }
+          ]
+        },
+        {
+          "slug": "desserts-pastry",
+          "name_ar": "حلويات",
+          "name_en": "Pastry",
+          "sort_order": 2,
+          "products": [
+            {
+              "slug": "desserts-pastry-cookies-40",
+              "name_ar": "كوكيز 40",
+              "name_en": "Cookies 40",
+              "price_min": 2500,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "desserts-pastry-cookies-80",
+              "name_ar": "كوكيز 80",
+              "name_en": "Cookies 80",
+              "price_min": 3500,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "desserts-pastry-mini-cookies",
+              "name_ar": "ميني كوكيز",
+              "name_en": "Mini Cookies",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "desserts-pastry-chocolate-brownie",
+              "name_ar": "براونيز شوكولا",
+              "name_en": "Chocolate Brownie",
+              "price_min": 3000,
+              "price_max": null,
+              "sort_order": 4
+            },
+            {
+              "slug": "desserts-pastry-caramel-brownie",
+              "name_ar": "براونيز كراميل",
+              "name_en": "Caramel Brownie",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 5
+            },
+            {
+              "slug": "desserts-pastry-ferrero-cake",
+              "name_ar": "فيريرو كيك",
+              "name_en": "Ferrero Cake",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 6
+            },
+            {
+              "slug": "desserts-pastry-fudge-cake",
+              "name_ar": "فدج كيك",
+              "name_en": "Fudge Cake",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 7
+            },
+            {
+              "slug": "desserts-pastry-double-chocolate-cake",
+              "name_ar": "دبل شوكولا كيك",
+              "name_en": "Double Chocolate Cake",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 8
+            },
+            {
+              "slug": "desserts-pastry-chocolate-cake",
+              "name_ar": "شوكولا كيك",
+              "name_en": "Chocolate Cake",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 9
+            },
+            {
+              "slug": "desserts-pastry-german-cake",
+              "name_ar": "جيرمن كيك",
+              "name_en": "German Cake",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 10
+            },
+            {
+              "slug": "desserts-pastry-english-cake",
+              "name_ar": "إنكلش كيك",
+              "name_en": "English Cake",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 11
+            },
+            {
+              "slug": "desserts-pastry-crepe",
+              "name_ar": "كريب",
+              "name_en": "Crêpe",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 12
+            },
+            {
+              "slug": "desserts-pastry-waffle",
+              "name_ar": "وافل",
+              "name_en": "Waffle",
+              "price_min": 5000,
+              "price_max": null,
+              "sort_order": 13
+            }
+          ]
+        },
+        {
+          "slug": "desserts-cheesecake",
+          "name_ar": "تشيز كيك",
+          "name_en": "Cheesecake",
+          "sort_order": 3,
+          "products": [
+            {
+              "slug": "desserts-cheesecake-chocolate",
+              "name_ar": "تشيز كيك شوكولا",
+              "name_en": "Chocolate",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 1
+            },
+            {
+              "slug": "desserts-cheesecake-double-chocolate",
+              "name_ar": "تشيز كيك دبل شوكولا",
+              "name_en": "Double Chocolate",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 2
+            },
+            {
+              "slug": "desserts-cheesecake-nescafe-chocolate",
+              "name_ar": "تشيز كيك نسكافيه شوكولا",
+              "name_en": "Nescafé Chocolate",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 3
+            },
+            {
+              "slug": "desserts-cheesecake-kiwi",
+              "name_ar": "تشيز كيك كيوي",
+              "name_en": "Kiwi",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 4
+            },
+            {
+              "slug": "desserts-cheesecake-roseberry",
+              "name_ar": "تشيز كيك روزبيري",
+              "name_en": "Roseberry",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 5
+            },
+            {
+              "slug": "desserts-cheesecake-blueberry",
+              "name_ar": "تشيز كيك بلوبيري",
+              "name_en": "Blueberry",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 6
+            },
+            {
+              "slug": "desserts-cheesecake-strawberry",
+              "name_ar": "تشيز كيك ستروبيري",
+              "name_en": "Strawberry",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 7
+            },
+            {
+              "slug": "desserts-cheesecake-san-sebastian",
+              "name_ar": "سان سباستيان تشيز كيك",
+              "name_en": "San Sebastián",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 8
+            },
+            {
+              "slug": "desserts-cheesecake-pistachio",
+              "name_ar": "تشيز كيك بستاشيو",
+              "name_en": "Pistachio",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 9
+            },
+            {
+              "slug": "desserts-cheesecake-bounty",
+              "name_ar": "تشيز كيك باونتي",
+              "name_en": "Bounty",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 10
+            },
+            {
+              "slug": "desserts-cheesecake-oreo",
+              "name_ar": "تشيز كيك أوريو",
+              "name_en": "Oreo",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 11
+            },
+            {
+              "slug": "desserts-cheesecake-lotus",
+              "name_ar": "تشيز كيك لوتس",
+              "name_en": "Lotus",
+              "price_min": 4000,
+              "price_max": null,
+              "sort_order": 12
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
