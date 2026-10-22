@@ -1,0 +1,30 @@
+{
+  "$schema": "../../../node_modules/wrangler/config-schema.json",
+  "name": "coffeella-v2-preview",
+  "main": "../../../.open-next/worker.js",
+  "compatibility_date": "2026-10-01",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": "../../../.open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "coffeella-v2-preview"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_INC_CACHE_KV",
+      "id": "REPLACE_WITH_INC_CACHE_KV_ID"
+    },
+    {
+      "binding": "NEXT_TAG_CACHE_KV",
+      "id": "REPLACE_WITH_TAG_CACHE_KV_ID"
+    }
+  ]
+}

@@ -46,11 +46,22 @@ npm run dev
 
 الملفات في `supabase/`:
 
-- `migrations/20261022000100_core_schema.sql`: الجداول والقيود والفهارس.
-- `migrations/20261022000200_security.sql`: الصلاحيات، وسياسات RLS، والدوال الإدارية، وسجل التدقيق.
-- `migrations/20261022000300_defaults_and_storage.sql`: الإعدادات الافتراضية، وقواعد الرفع، ومخازن الصور.
-- `seed.sql`: القائمة الأصلية (3 أقسام، 9 مجموعات، 82 منتجاً).
-- `tests/`: اختبارات الأمان على PostgreSQL محلي داخل Node (PGlite)، مع محاكاة لأدوار Supabase.
+| الترتيب | الملف | المحتوى |
+|---|---|---|
+| 1 | `migrations/20261022000100_core_schema.sql` | الجداول والقيود والفهارس |
+| 2 | `migrations/20261022000200_security.sql` | الصلاحيات، وسياسات RLS، والدوال الإدارية، وسجل التدقيق |
+| 3 | `migrations/20261022000300_defaults_and_storage.sql` | الإعدادات الافتراضية، وقواعد الرفع، ومخازن الصور |
+| 4 | `migrations/20261022000400_review_hardening.sql` | إصلاحات المراجعة الأمنية (انظر أدناه) |
+| 5 | `seed.sql` | القائمة الأصلية (3 أقسام، 9 مجموعات، 82 منتجاً) |
+
+- `tests/`: اختبارات الأمان على PostgreSQL محلي داخل Node (PGlite) مع محاكاة لأدوار Supabase. الأمر: `npm run test:db`.
+- **إصلاحات المراجعة (الملف 4):**
+  - الجداول والدوال الجديدة لا تُكشف تلقائياً للـ API.
+  - لا مفضلة لمنتج مخفي.
+  - المحظور لا يغيّر اسمه الظاهر.
+  - حد لحجم الإعدادات العامة.
+  - البريد في قائمة المستخدمين يراه المالك والمدير فقط.
+  - نقل الملكية يتطلب تسجيل دخول خلال آخر 10 دقائق (من وقت المصادقة في رمز الجلسة `amr`).
 
 ### الأدوار
 
@@ -59,22 +70,32 @@ npm run dev
 | owner (مالك واحد فقط) | كل شيء، بما فيه إدارة المشرفين ونقل الملكية |
 | admin | المنيو، المراجعات، المستخدمون والحظر، المحررون والمشرفون، الصفحات والنشر، الإعدادات، السجل |
 | editor | المنيو، تحرير الصفحات (دون نشر)، رفع الصور |
-| moderator | إخفاء المراجعات، عرض المستخدمين |
+| moderator | إخفاء المراجعات، عرض المستخدمين (دون البريد) |
 
 الصلاحيات تُفرض داخل قاعدة البيانات نفسها (RLS ودوال `SECURITY DEFINER` تتحقق من الصلاحية)، لا في الواجهة فقط.
 
-### الإعداد على مشروع Supabase بعيد
+### خطوات التطبيق على مشروع Supabase بعيد (لم تُنفَّذ بعد)
 
 1. أنشئ مشروعاً من https://supabase.com/dashboard (الخطة المجانية تكفي للتطوير).
-2. طبّق ملفات `supabase/migrations/` بالترتيب، ثم `supabase/seed.sql`:
-   - **إما** من SQL Editor في لوحة Supabase: انسخ كل ملف والصقه ونفّذه بالترتيب.
-   - **أو** عبر Supabase CLI: `npx supabase link --project-ref <ref>` ثم `npx supabase db push`، ثم نفّذ `seed.sql` من SQL Editor.
-3. انسخ `.env.example` إلى `.env.local` واملأ القيم من لوحة Supabase (Project Settings → API). **لا ترسل المفاتيح في المحادثات ولا ترفعها إلى Git.**
-4. في Authentication → URL Configuration اضبط Site URL وRedirect URLs (مثل `http://localhost:3000/**` وعنوان المعاينة).
+2. من **SQL Editor** نفّذ الملفات الخمسة **بالترتيب** في الجدول أعلاه، كل ملف كاملاً في تبويب جديد، وتأكد من رسالة النجاح قبل الانتقال إلى التالي.
+   - البديل عبر CLI: `npx supabase link --project-ref <ref>` ثم `npx supabase db push` للملفات 1–4، ثم `seed.sql` من SQL Editor.
+   - أوامر CLI تطلب تسجيل الدخول بحسابك، ولا تُنفَّذ من هنا.
+3. تحقّق بعد التنفيذ من SQL Editor:
+
+   ```sql
+   select (select count(*) from public.categories)     as categories,  -- 3
+          (select count(*) from public.product_groups) as groups,      -- 9
+          (select count(*) from public.products)       as products;    -- 82
+   select tablename from pg_tables where schemaname = 'public' and not rowsecurity;  -- يجب ألا يُرجع أي صف
+   ```
+
+   وافتح Database → Advisors → Security للتأكد من عدم وجود تحذيرات RLS.
+4. انسخ `.env.example` إلى `.env.local` واملأ القيم من لوحة Supabase (Project Settings → API). **لا ترسل المفاتيح في المحادثات ولا ترفعها إلى Git.**
+5. في Authentication → URL Configuration اضبط Site URL وRedirect URLs (مثل `http://localhost:3000/**`).
 
 ### الإعداد المحلي الكامل (اختياري)
 
-يتطلب Docker Desktop: `npx supabase start`، ثم `npx supabase db reset` لتطبيق المايغريشن والبيانات. Docker غير مثبت على جهاز التطوير الحالي، لذلك تُختبر قاعدة البيانات عبر PGlite (`npm run test:db`).
+يتطلب Docker Desktop: `npx supabase start` ثم `npx supabase db reset`. Docker غير مثبت على جهاز التطوير الحالي، لذلك تُختبر قاعدة البيانات عبر PGlite (`npm run test:db`).
 
 ### تهيئة المالك الأول بأمان
 
@@ -85,7 +106,7 @@ npm run dev
    select public.bootstrap_owner('owner@example.com');
    ```
 
-الدالة لا يستطيع استدعاءها أي مستخدم من الموقع. تعمل فقط من SQL Editor أو بمفتاح الخدمة، وترفض التنفيذ إذا كان هناك مالك مسبقاً. بعدها يدير المالك بقية الأدوار من لوحة الإدارة، وتنتقل الملكية فقط عبر طلب نقل يقبله مشرف (admin) خلال 48 ساعة.
+لا يستطيع أي مستخدم من الموقع استدعاء هذه الدالة. تعمل فقط من SQL Editor أو بمفتاح الخدمة، وترفض التنفيذ إذا وُجد مالك مسبقاً.
 
 ## متغيرات البيئة
 
@@ -95,30 +116,105 @@ npm run dev
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | عام | Supabase → API Keys → Publishable key |
 | `NEXT_PUBLIC_SITE_URL` | عام | عنوان الموقع المنشور |
 | `SUPABASE_SECRET_KEY` | **سري** (الخادم فقط) | Supabase → API Keys → Secret key |
+| `REVALIDATE_SECRET` | **سري** (الخادم فقط) | تولّده بنفسك (32 حرفاً عشوائياً على الأقل) |
 | `NEXT_PUBLIC_POSTHOG_KEY` / `NEXT_PUBLIC_POSTHOG_HOST` | عام | PostHog (مرحلة لاحقة) |
 
-على Cloudflare تُضاف القيم السرية بالأمر `npx wrangler secret put SUPABASE_SECRET_KEY`، ولا تُكتب في `wrangler.jsonc`.
+على Cloudflare تُضاف القيم السرية بالأمر `npx wrangler secret put <NAME>`، ولا تُكتب في `wrangler.jsonc`.
 
-## النشر (Cloudflare — قيد الاختبار)
+## تحديث القائمة بعد النشر
 
-لم يُنفَّذ أي نشر. الإعداد جاهز لمعاينة منفصلة باسم `coffeella-v2-preview` غير مرتبطة بأي نطاق.
+`POST /api/internal/revalidate` مع الترويسة `Authorization: Bearer <REVALIDATE_SECRET>`:
+
+- يُعلِم ذاكرة القائمة والإعدادات بأنها قديمة، فيرى الزائر التالي البيانات الجديدة فوراً (`revalidateTag(..., { expire: 0 })`).
+- لا تقدَّم أسعار قديمة بعد النشر.
+- يستخدمه لاحقاً زر النشر في لوحة الإدارة، و**Supabase Database Webhooks** على جداول القائمة والإعدادات.
+- بدون `REVALIDATE_SECRET` (32 حرفاً على الأقل) يعيد 404.
+
+## Cloudflare (معاينة محلية فقط — لم يُنشر شيء)
 
 | الأمر | الوظيفة |
 |---|---|
 | `npm run cf:build` | بناء نسخة Workers عبر OpenNext (`.open-next/`) |
-| `npm run cf:preview` | بناء وتشغيل محلي داخل بيئة Workers الحقيقية (workerd) |
+| `npm run cf:preview` | بناء وتشغيل محلي داخل بيئة Workers (workerd) |
+| `node scripts/e2e/cf-cache-check.mjs <variant>` | اختبار شامل للذاكرة المؤقتة وتحديث القائمة بعد النشر |
 
-### نتائج اختبار التوافق (2026-10-22، على Windows)
+### الحدود الرسمية (developers.cloudflare.com، تاريخ المراجعة 2026-10-22)
 
-- **البناء:** OpenNext 1.20.13 مع Next.js 16.4.2 يبني بنجاح على Windows، مع تحذير رسمي بأن دعم Windows غير مضمون ويُفضَّل WSL.
-- **الحجم:** الـ Worker بحجم 1.10 MiB بعد الضغط، أي أقل من حد الخطة المجانية (3 MiB).
-- **Cache Components:** مع `cacheComponents` و`use cache` توقفت الطلبات داخل workerd وأعادت 500، وظهر تحذير Next.js بأنه لا يضمن Cache Components مع `setTimeout` في Workers. جُرِّبت ذاكرة الأصول الثابتة (فشلت: "Composable cache is not supported") وKV (استمر التوقف).
-- **الحل المعتمد:** إيقاف Cache Components واستخدام النموذج التقليدي، أي ISR كل ساعة مع `unstable_cache` و`revalidateTag("menu")` عند النشر. في workerd: الصفحة تعيد 200 بكل المنتجات الـ82، و404 تعمل، والبحث والصور تعمل.
-- **الذاكرة المؤقتة:** Workers KV (متاح في الخطة المجانية) لـ `incrementalCache` و`tagCache`، مع طابور في الذاكرة. KV متسق تدريجياً، لذا قد يستغرق ظهور التحديث بعد النشر حتى دقيقة تقريباً في كل المواقع.
+| البند | Workers Free | Workers Paid (حد أدنى 5$ شهرياً) |
+|---|---|---|
+| حجم الـ Worker | 64 MiB **غير مضغوط** | 64 MiB غير مضغوط |
+| وقت المعالج لكل طلب | **10 ms** | حتى 5 دقائق (افتراضي 30 ثانية) |
+| الطلبات | 100,000 يومياً | 10 ملايين شهرياً، ثم 0.30$ لكل مليون |
+| زمن بدء التشغيل | ثانية واحدة | ثانية واحدة |
+| الذاكرة | 128 MB | 128 MB |
+| الطلبات الفرعية لكل طلب | 50 | 10,000 |
+| ملفات الأصول الثابتة | 20,000 ملف، 25 MiB للملف | 100,000 ملف |
 
-### قبل أول نشر للمعاينة (يتطلب حسابك)
+- لا يوجد حد للحجم المضغوط، ورقم gzip الذي تعرضه Wrangler للمرجعية فقط.
+- طلبات الأصول الثابتة مجانية وغير محدودة.
+
+**تصحيح:** التقرير السابق ذكر حداً قدره 3 MiB بعد الضغط للخطة المجانية. هذا الرقم من صفحة قديمة في وثائق OpenNext، والحد الرسمي الحالي هو 64 MiB غير مضغوط.
+
+### القياس (`wrangler deploy --dry-run`، الإعداد الرئيسي)
+
+- **`Total Upload` (غير مضغوط):** 5,795.82 KiB ≈ 5.66 MiB، أي نحو 9% من حد 64 MiB.
+- **gzip (للمرجعية):** 1,219.13 KiB.
+- **الأصول الثابتة:** 35 ملفاً بحجم 1.3 MB تقريباً.
+
+### نتائج الاختبار المحلي (workerd، Windows)
+
+- **Cache Components:** مع `use cache` توقفت الطلبات وأعادت 500، فبقي **النموذج التقليدي** مفعّلاً: ISR مع `unstable_cache` ووسوم `menu` و`settings`.
+- **سيناريو الاختبار:**
+  1. عرض الصفحة.
+  2. تغيير سعر في قاعدة بيانات وهمية.
+  3. التأكد أن الصفحة ما زالت من الذاكرة دون قراءة جديدة.
+  4. رفض سر خاطئ.
+  5. إعادة التحقق بالسر الصحيح.
+  6. ظهور السعر الجديد من **أول** طلب.
+  7. عودة الصفحة إلى الذاكرة.
+  8. عدم وجود أخطاء في السجل.
+
+| الإعداد | incrementalCache | tagCache | queue | النتيجة |
+|---|---|---|---|---|
+| `main` (الحالي) | KV | KV | memory | 7/7 |
+| `kv-kv-memory` | KV | KV | memory | 7/7 |
+| `r2-d1-do` | R2 | D1 | Durable Object | 7/7 |
+| `kv-d1-do` | KV | D1 | Durable Object | 7/7 |
+
+**حدود هذا الاختبار:**
+- المحاكاة المحلية (Miniflare) لـ KV وD1 وR2 وDurable Objects **متسقة فوراً**، فلا تُظهر تأخر KV الحقيقي (حتى نحو 60 ثانية بين المواقع).
+- لا يُقاس وقت المعالج محلياً، فيجب قياسه على معاينة منشورة.
+
+### الموارد والتكلفة (الخطة المجانية، من صفحات الأسعار الرسمية)
+
+| المورد | المجاني | بعد ذلك |
+|---|---|---|
+| Workers KV | 100,000 قراءة يومياً، 1,000 كتابة/حذف/قائمة يومياً، 1 GB | في Paid: 10M قراءة و1M كتابة شهرياً ثم 0.50$/M قراءة و5$/M كتابة |
+| D1 | 5M صف قراءة و100,000 صف كتابة يومياً، 5 GB | في Paid: 25B قراءة و50M كتابة شهرياً ثم 0.001$/M و1$/M |
+| Durable Objects (SQLite) | متاحة في المجاني: 100,000 طلب و13,000 GB-s يومياً | في Paid: 1M طلب شهرياً ثم 0.15$/M |
+| R2 | 10 GB-month، 1M عملية فئة A، 10M فئة B شهرياً، نقل مجاني | 0.015$/GB-month، 4.50$/M فئة A، 0.36$/M فئة B |
+
+- في المجاني، تجاوز أي حد يومي يجعل العمليات من ذلك النوع تفشل حتى منتصف الليل UTC.
+- صفحة أسعار R2 لا تذكر إن كان تفعيله يتطلب إضافة وسيلة دفع، فهذا **غير مُتحقَّق منه**.
+
+### المقارنة (القرار لصاحب المشروع)
+
+- **`r2-d1-do`:**
+  - الإعداد الموثّق في OpenNext للمواقع الصغيرة، والأكثر أماناً من حيث الاتساق.
+  - R2 في منطقة واحدة، فقد يكون أبطأ قليلاً، ويمكن إضافة `withRegionalCache` لاحقاً.
+  - قد يتطلب تفعيل R2 في حسابك.
+- **`kv-d1-do`:**
+  - كله ضمن الخطة المجانية، ومعدّل كتابة KV (1,000 يومياً) يكفي لمقهى ينشر تعديلات قليلة.
+  - D1 متسق، لذلك بعد النشر يكتشف الطلب التالي أن الصفحة قديمة حتى لو بقيت نسخة قديمة في KV. لكن OpenNext لا يوصي بـ KV بسبب الاتساق التدريجي.
+- **`kv-kv-memory` (الحالي):**
+  - وسم KV غير موثّق، والطابور في الذاكرة غير مناسب للإنتاج حسب OpenNext.
+  - **مؤقت، ولا يُعتمد نهائياً.**
+- **خطر وقت المعالج:** 10 ms لكل طلب في الخطة المجانية قد لا تكفي لإعادة توليد الصفحة. يُقاس على معاينة منشورة، وإن تجاوزها فالحل خطة Workers Paid (5$ شهرياً).
+
+### قبل أول نشر للمعاينة (يتطلب حسابك وموافقتك)
 
 1. `npx wrangler login`
-2. `npx wrangler kv namespace create NEXT_INC_CACHE_KV` و`npx wrangler kv namespace create NEXT_TAG_CACHE_KV`، ثم ضع المعرّفين بدل `REPLACE_WITH_…` في `wrangler.jsonc`.
-3. أضف متغيرات البيئة العامة وقت البناء، والأسرار عبر `npx wrangler secret put`.
-4. النشر `npx opennextjs-cloudflare build && npx opennextjs-cloudflare deploy` **فقط بعد موافقة صاحب المشروع.**
+2. إنشاء موارد الخيار المختار، مثلاً `npx wrangler d1 create coffeella-v2-tag-cache` و`npx wrangler kv namespace create NEXT_INC_CACHE_KV`، أو `npx wrangler r2 bucket create coffeella-v2-inc-cache`، ثم وضع المعرّفات بدل `REPLACE_WITH_…`.
+3. إضافة متغيرات البيئة العامة وقت البناء، والأسرار عبر `npx wrangler secret put`.
+4. يُفضَّل البناء على Linux (Cloudflare Workers Builds أو GitHub Actions)، لأن OpenNext يحذّر من أن دعم Windows غير مضمون.
+5. النشر **فقط بعد موافقة صاحب المشروع الصريحة**.

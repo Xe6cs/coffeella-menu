@@ -3,10 +3,10 @@ import kvIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cac
 import memoryQueue from "@opennextjs/cloudflare/overrides/queue/memory-queue";
 import kvNextTagCache from "@opennextjs/cloudflare/overrides/tag-cache/kv-next-tag-cache";
 
-// Cache Components ("use cache") needs a writable cache on Workers; the
-// read-only static-assets cache fails with "Composable cache is not supported".
-// Workers KV is available on the free plan (eventually consistent: a publish
-// can take up to ~60s to reach every location). Bindings are in wrangler.jsonc.
+// TEMPORARY configuration for local previews only — not the final choice.
+// Cache Components is off (it hung under Workers); the classic ISR model is
+// used. The final cache setup is pending the owner's decision between the
+// tested variants in cloudflare/variants/ (r2-d1-do, kv-d1-do). See README.
 export default defineCloudflareConfig({
   incrementalCache: kvIncrementalCache,
   tagCache: kvNextTagCache,
