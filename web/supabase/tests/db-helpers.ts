@@ -57,9 +57,10 @@ export async function setRole(db: PGlite, userId: string, role: "owner" | "admin
   );
 }
 
-export type Who = { role: "anon" } | { role: "authenticated"; id: string };
+export type Who = { role: "anon" } | { role: "authenticated"; id: string; authAgeSeconds: number };
 export const anon: Who = { role: "anon" };
-export const user = (id: string): Who => ({ role: "authenticated", id });
+/** A signed-in user. authAgeSeconds = how long ago they last entered credentials (JWT "amr"). */
+export const user = (id: string, authAgeSeconds = 60): Who => ({ role: "authenticated", id, authAgeSeconds });
 
 /**
  * Runs fn inside a transaction as an API role with the given JWT claims,
@@ -68,7 +69,17 @@ export const user = (id: string): Who => ({ role: "authenticated", id });
 export async function as<T>(db: PGlite, who: Who, fn: (tx: Transaction) => Promise<T>): Promise<T> {
   return db.transaction(async (tx) => {
     await tx.exec(`set local role ${who.role}`);
-    const claims = who.role === "anon" ? { role: "anon" } : { sub: who.id, role: "authenticated" };
+    const now = Math.floor(Date.now() / 1000);
+    const claims =
+      who.role === "anon"
+        ? { role: "anon" }
+        : {
+            sub: who.id,
+            role: "authenticated",
+            aal: "aal1",
+            // Same shape Supabase Auth puts in access tokens.
+            amr: [{ method: "password", timestamp: now - who.authAgeSeconds }],
+          };
     await tx.query(`select set_config('request.jwt.claims', $1, true)`, [JSON.stringify(claims)]);
     return fn(tx);
   });
